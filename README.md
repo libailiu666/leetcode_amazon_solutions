@@ -1,0 +1,2 @@
+# leetcodeamazon
+leetcode for amazon
