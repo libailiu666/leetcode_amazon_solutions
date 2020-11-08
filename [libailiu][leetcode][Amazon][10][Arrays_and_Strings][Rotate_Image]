@@ -1,0 +1,24 @@
+#define rf(i, a, b) for(int i = a; i < b; i++)
+#define r(i, b) for(int i = 0; i < b; i++)
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        // Flip diagonally 
+        for(int i = 0; i < n; i++){
+            for(int j = i+1; j < n; j++){
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+        
+        //r(i, n) rf(j, i + 1, n) swap(matrix[i][j], matrix[j][i]);
+        // Flip horizontally 
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n/2; j++){
+                swap(matrix[i][j], matrix[i][n - j - 1]);
+            }
+        }
+        //r(i, n) r(j, n/2) swap(matrix[i][j], matrix[i][n - j - 1]);
+    }
+};
