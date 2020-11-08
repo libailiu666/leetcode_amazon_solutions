@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        // support variables
+        int i = 0, j = height.size() - 1, maxV = INT_MIN;
+        cout<<maxV<<endl;
+        while (i < j) {
+            // updating max
+            maxV = max(min(height[i], height[j]) * (j - i), maxV);
+            // moving the index of the lower element
+            if (height[i] < height[j]) i++;
+            else j--;
+        }
+        return maxV;
+    }
+};
