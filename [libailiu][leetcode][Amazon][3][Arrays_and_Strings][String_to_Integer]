@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int myAtoi(string s)
+    {
+        int result = 0;
+        int sign = 1;
+        
+        if(s.size() == 0)
+            return 0;
+        
+        int startIndex = 0;
+        while (startIndex < s.size() && s[startIndex] == ' ') // check blankspace
+            startIndex++;
+        
+        if(startIndex < s.size())
+        {
+            if(s[startIndex] == '+')
+            {
+                sign = 1;
+                startIndex++;
+            }
+            else if(s[startIndex] == '-')
+            {
+                sign = -1;
+                startIndex++;
+            }
+        }
+        
+        while(startIndex < s.size() && s[startIndex] >= '0' && s[startIndex] <= '9')
+        {
+            if(result > INT_MAX / 10 || (result == INT_MAX / 10 && s[startIndex] - '0' > INT_MAX % 10))
+            {
+                if(sign == 1)
+                    return INT_MAX;
+                else if(sign == -1)
+                    return INT_MIN;
+            }
+            result = result * 10 + (s[startIndex] - '0');
+            startIndex++;
+        }
+        
+        return result * sign;
+    }
+};
