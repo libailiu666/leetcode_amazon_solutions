@@ -1,0 +1,68 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& a) 
+    { 
+        
+    
+        sort(a.begin(),a.end());//[-1,0,1,2,-1,-4]   //[-4,-1,-1,0,1,2]
+        int left,right;
+        vector<vector<int>>v;
+        
+        if(a.size()<3)
+        {
+            
+            return v;
+        }
+        
+        
+        // left=1;
+        // right=a.size()-1;
+        
+        for(int i=0;i<a.size()-2;i++)//[-4,-1,-1,-1,-1,-1,0,1,2]
+        {
+            int t=a[i];
+            left=i+1;
+            right=a.size()-1;
+            if(i>0 && a[i]==a[i-1])//Notice that the solution set must not contain duplicate triplets.
+                continue;
+            
+            while(left<right)
+            {
+                if(t+a[left]+a[right]==0)
+                {
+                    vector<int>q={t,a[left],a[right]};
+                    v.push_back(q);
+                   
+                    
+                    while(left<right && a[left]==a[left+1])
+                    {
+                        left++;
+                    }
+                    while(left<right && a[right]==a[right-1])
+                    {
+                        right--;
+                    }
+                    left++;
+                    right--;
+                    
+                }
+                
+                else if(t+a[left]+a[right]>0)
+                {
+                    right--;
+                }
+                else if(t+a[left]+a[right]<0)
+                {
+                    left++;
+                    
+                }
+                    
+                
+            }
+            
+            
+        }
+        return v;
+        
+    }
+}; 
