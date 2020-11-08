@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int exist[CHAR_MAX];
+        for(int i = 0; i < CHAR_MAX; i++)
+            exist[i] = -1;
+        
+        size_t s_len = s.length();
+        int max_len = 0;
+        int start = 0;
+        // sliding window
+        for(int i = 0; i < s_len; i++) {
+            // first occurrance
+            if(exist[s[i]] == -1)
+                exist[s[i]] = i;
+            // occur before
+            else {
+                start = max(exist[s[i]] + 1, start);//start = (exist[s[i]] + 1);
+                exist[s[i]] = i;
+            }
+            max_len = max(max_len, i-start+1);
+            //max_len = max(max_len, i-start);
+        }
+        return max_len;
+    }
+};
